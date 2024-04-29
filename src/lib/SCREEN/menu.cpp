@@ -96,7 +96,7 @@ static void displayIdleScreen(bool init)
         changed |= last_message != disp_message ? CHANGED_ALL : 0;
         changed |= last_temperature != temperature ? CHANGED_TEMP : 0;
         changed |= last_rate != config.GetRate() ? CHANGED_RATE : 0;
-        changed |= last_power != config.GetPower() ? CHANGED_POWER : 0;
+        changed |= last_power != config.GetRealPower() ? CHANGED_POWER : 0;
         changed |= last_dynamic != config.GetDynamicPower() ? CHANGED_POWER : 0;
         changed |= last_run_power != (uint8_t)(POWERMGNT::currPower()) ? CHANGED_POWER : 0;
         changed |= last_tlm != tlmIdx ? CHANGED_TELEMETRY : 0;
@@ -109,7 +109,7 @@ static void displayIdleScreen(bool init)
         last_message = disp_message;
         last_temperature = temperature;
         last_rate = config.GetRate();
-        last_power = config.GetPower();
+        last_power = config.GetRealPower();
         last_tlm = tlmIdx;
         last_motion = config.GetMotionMode();
         last_fan = config.GetFanMode();

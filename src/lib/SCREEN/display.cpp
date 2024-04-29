@@ -109,7 +109,11 @@ static const char *power_string[] = {
     "250mW",
     "500mW",
     "1000mW",
-    "2000mW"
+    "2000mW",
+    "AUX9",
+    "AUX10",
+    "AUX11",
+    "AUX12"
 };
 
 static const char *dynamic_string[] = {

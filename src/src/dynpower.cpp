@@ -39,7 +39,7 @@ static uint32_t dynpower_last_linkstats_millis;
 
 static void DynamicPower_SetToConfigPower()
 {
-    POWERMGNT::setPower((PowerLevels_e)config.GetPower());
+    POWERMGNT::setPower((PowerLevels_e)config.GetRealPower());
 }
 
 void DynamicPower_Init()
@@ -73,8 +73,7 @@ void DynamicPower_Update(uint32_t now)
   // When not using dynamic power, return here
   if (!config.GetDynamicPower())
   {
-    // if RSSI is dropped enough, inc power back to the configured power
-    if (newTlmAvail && (rssi <= -20) &&  POWERMGNT::currPower() < (PowerLevels_e)config.GetPower())
+    if (POWERMGNT::currPower() != (PowerLevels_e)config.GetRealPower())
     {
       DynamicPower_SetToConfigPower();
     }
@@ -97,7 +96,7 @@ void DynamicPower_Update(uint32_t now)
   }
 
   // How much available power is left for incremental increases
-  uint8_t powerHeadroom = (uint8_t)config.GetPower() - (uint8_t)POWERMGNT::currPower();
+  uint8_t powerHeadroom = (uint8_t)config.GetRealPower() - (uint8_t)POWERMGNT::currPower();
 
   if (lastTlmMissed)
   {
@@ -196,6 +195,7 @@ void DynamicPower_Update(uint32_t now)
   }
 }
 
+// <<<<<<< HEAD
 #endif // TARGET_TX
 
 #if defined(TARGET_RX)

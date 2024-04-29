@@ -67,9 +67,9 @@ static int timeout()
             {
                 POWERMGNT::setPower(MinPower);
             }
-            if((system_quiet_state == GSENSOR_SYSTEM_STATE_MOVING) && (system_quiet_pre_state == GSENSOR_SYSTEM_STATE_QUIET) && POWERMGNT::currPower() < (PowerLevels_e)config.GetPower())
+            if((system_quiet_state == GSENSOR_SYSTEM_STATE_MOVING) && (system_quiet_pre_state == GSENSOR_SYSTEM_STATE_QUIET) && POWERMGNT::currPower() < (PowerLevels_e)config.GetRealPower())
             {
-                POWERMGNT::setPower((PowerLevels_e)config.GetPower());
+                POWERMGNT::setPower((PowerLevels_e)config.GetRealPower());
             }
         }
         system_quiet_pre_state = system_quiet_state;
