@@ -4,6 +4,8 @@
 #include "elrs_eeprom.h"
 #include "options.h"
 #include "common.h"
+#include "POWERMGNT.h"
+#include "crsf_protocol.h"
 
 #if defined(PLATFORM_ESP32)
 #include <nvs_flash.h>
@@ -44,7 +46,7 @@ typedef enum {
 typedef struct {
     uint32_t    rate:4,
                 tlm:4,
-                power:3,
+                power:4,
                 switchMode:2,
                 boostChannel:3, // dynamic power boost AUX channel
                 dynamicPower:1,
@@ -52,7 +54,7 @@ typedef struct {
                 txAntenna:2,    // FUTURE: Which TX antenna to use, 0=Auto
                 ptrStartChannel:4,
                 ptrEnableChannel:5,
-                _unused:3;
+                _unused:2;
 } model_config_t;
 
 typedef struct {
@@ -122,6 +124,16 @@ public:
     model_config_t const &GetModelConfig(uint8_t model) const { return m_config.model_config[model]; }
     uint8_t GetPTRStartChannel() const { return m_model->ptrStartChannel; }
     uint8_t GetPTREnableChannel() const { return m_model->ptrEnableChannel; }
+
+    // Calculates real power taking into account AUX values if needed
+    // TODO: Should it be moved into config.cpp?
+    uint8_t GetRealPower() const {
+        if (m_model->power >= PWR_COUNT) {
+            auto powerChannel = AUX9 + m_model->power - PWR_COUNT;
+            return CRSF_to_N(ChannelData[powerChannel], 8);
+        }
+        return m_model->power;
+    }
 
     // Setters
     void SetRate(uint8_t rate);

@@ -1,7 +1,7 @@
 #include "rxtx_devLua.h"
 #include "POWERMGNT.h"
 
-char strPowerLevels[] = "10;25;50;100;250;500;1000;2000";
+char strPowerLevels[] = "10mW;25mW;50mW;100mW;250mW;500mW;1000mW;2000mW;AUX9;AUX10;AUX11;AUX12";
 const char STR_EMPTYSPACE[] = { 0 };
 const char STR_LUA_PACKETRATES[] =
 #if defined(RADIO_SX127X)
@@ -29,16 +29,25 @@ void luadevGeneratePowerOpts(luaItem_selection *luaPower)
   // luaPower->min = (uint8_t)MinPower;
   luaPower->options = (const char *)out;
 
-  // Continue until after than MAXth item and drop a null in the orginal
-  // string on the semicolon (not after like the previous loop)
-  while (pwr <= POWERMGNT::getMaxPower())
+  // Find where max supported power level is ended and then skip to auxes
+  char *powerLevelsEnd = NULL;
+  while (pwr <= MaxPower)
   {
     // If out still points to a semicolon from the last loop move past it
     if (*out)
       ++out;
     while (*out && *out != ';')
       ++out;
+    if (pwr == POWERMGNT::getMaxPower())
+    {
+      powerLevelsEnd = out;
+    }
     pwr = (PowerLevels_e)((unsigned int)pwr + 1);
   }
-  *out = '\0';
+
+  // Finally copy auxes block after available power levels
+  if (powerLevelsEnd != NULL && powerLevelsEnd != out)
+  {
+    memmove(powerLevelsEnd, out, strlen(out) + 1);
+  }
 }

@@ -57,7 +57,7 @@ static struct luaItem_selection luaPower = {
     {"Max Power", CRSF_TEXT_SELECTION},
     0, // value
     strPowerLevels,
-    "mW"
+    STR_EMPTYSPACE
 };
 
 static struct luaItem_selection luaDynamicPower = {
@@ -453,7 +453,7 @@ static void updateFolderName_TxPower()
   uint8_t pwrFolderLabelOffset = 10; // start writing after "TX Power ("
 
   // Power Level
-  pwrFolderLabelOffset += findLuaSelectionLabel(&luaPower, &pwrFolderDynamicName[pwrFolderLabelOffset], config.GetPower() - MinPower);
+  pwrFolderLabelOffset += findLuaSelectionLabel(&luaPower, &pwrFolderDynamicName[pwrFolderLabelOffset], config.GetRealPower() - MinPower);
 
   // Dynamic Power
   if (txPwrDyn)
@@ -639,7 +639,17 @@ static void registerLuaParameters()
     registerLUAParameter(&luaPowerFolder);
     luadevGeneratePowerOpts(&luaPower);
     registerLUAParameter(&luaPower, [](struct luaPropertiesCommon *item, uint8_t arg) {
-      config.SetPower((PowerLevels_e)constrain(arg + POWERMGNT::getMinPower(), POWERMGNT::getMinPower(), POWERMGNT::getMaxPower()));
+      auto maxPowerLevelArg = POWERMGNT::getMaxPower() - POWERMGNT::getMinPower();
+      if (arg <= maxPowerLevelArg)
+      {
+        config.SetPower(arg + POWERMGNT::getMinPower());
+      }
+      // arg should be mapped to a corresponding AUX channel
+      else
+      {
+        // Only 4 AUX channels are allowed to switch device power
+        config.SetPower(constrain(arg + PWR_COUNT - 1 - maxPowerLevelArg, 0, PWR_COUNT - 1 + 4));
+      }
       if (!config.IsModified())
       {
           ResetPower();
