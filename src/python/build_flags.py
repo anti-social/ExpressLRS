@@ -178,6 +178,8 @@ if '-DRADIO_SX127X=1' in build_flags:
         json_flags['domain'] = 8
     if fnmatch.filter(build_flags, '*-DRegulatory_Domain_AFU_500_520_40'):
         json_flags['domain'] = 9
+    if fnmatch.filter(build_flags, '*-DRegulatory_Domain_AFU_775_780_10'):
+        json_flags['domain'] = 10
 else:
     json_flags['domain'] = 0
 

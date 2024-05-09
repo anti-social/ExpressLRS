@@ -275,6 +275,7 @@ extern bool pwmSerialDefined;
         defined(Regulatory_Domain_AFU_460_480_40) || \
         defined(Regulatory_Domain_AFU_480_500_40) || \
         defined(Regulatory_Domain_AFU_500_520_40) || \
+        defined(Regulatory_Domain_AFU_775_780_10) || \
         defined(UNIT_TEST))
 #error "Regulatory_Domain is not defined for 900MHz device. Check user_defines.txt!"
 #endif
