@@ -47,6 +47,7 @@ __attribute__ ((used)) static firmware_options_t flashedOptions = {
     .domain = 4,
     #elif defined(Regulatory_Domain_EU_433)
     .domain = 5,
+
     #elif defined(Regulatory_Domain_AFU_440_460_40)
     .domain = 6,
     #elif defined(Regulatory_Domain_AFU_460_480_40)
@@ -55,8 +56,35 @@ __attribute__ ((used)) static firmware_options_t flashedOptions = {
     .domain = 8,
     #elif defined(Regulatory_Domain_AFU_500_520_40)
     .domain = 9,
-    #elif defined(Regulatory_Domain_AFU_775_780_10)
+
+    #elif defined(Regulatory_Domain_AFU_720_760_80)
     .domain = 10,
+    #elif defined(Regulatory_Domain_AFU_760_800_80)
+    .domain = 11,
+    #elif defined(Regulatory_Domain_AFU_800_840_80)
+    .domain = 12,
+    #elif defined(Regulatory_Domain_AFU_840_860_40)
+    .domain = 13,
+    #elif defined(Regulatory_Domain_AFU_940_980_80)
+    .domain = 14,
+    #elif defined(Regulatory_Domain_AFU_980_1020_80)
+    .domain = 15,
+
+    #elif defined(Regulatory_Domain_AFU_975_980_10)
+    .domain = 16,
+    #elif defined(Regulatory_Domain_AFU_975_976_3)
+    .domain = 17,
+    #elif defined(Regulatory_Domain_AFU_976_977_3)
+    .domain = 18,
+    #elif defined(Regulatory_Domain_AFU_977_978_3)
+    .domain = 19,
+    #elif defined(Regulatory_Domain_AFU_978_979_3)
+    .domain = 20,
+    #elif defined(Regulatory_Domain_AFU_979_980_3)
+    .domain = 21,
+    #elif defined(Regulatory_Domain_AFU_995_1000_10)
+    .domain = 22,
+
     #else
     #error No regulatory domain defined, please define one in user_defines.txt
     #endif

@@ -170,6 +170,7 @@ if '-DRADIO_SX127X=1' in build_flags:
         json_flags['domain'] = 4
     if fnmatch.filter(build_flags, '*-DRegulatory_Domain_EU_433'):
         json_flags['domain'] = 5
+
     if fnmatch.filter(build_flags, '*-DRegulatory_Domain_AFU_440_460_40'):
         json_flags['domain'] = 6
     if fnmatch.filter(build_flags, '*-DRegulatory_Domain_AFU_460_480_40'):
@@ -178,8 +179,34 @@ if '-DRADIO_SX127X=1' in build_flags:
         json_flags['domain'] = 8
     if fnmatch.filter(build_flags, '*-DRegulatory_Domain_AFU_500_520_40'):
         json_flags['domain'] = 9
-    if fnmatch.filter(build_flags, '*-DRegulatory_Domain_AFU_775_780_10'):
+
+    if fnmatch.filter(build_flags, '*-DRegulatory_Domain_AFU_720_760_80'):
         json_flags['domain'] = 10
+    if fnmatch.filter(build_flags, '*-DRegulatory_Domain_AFU_760_800_80'):
+        json_flags['domain'] = 11
+    if fnmatch.filter(build_flags, '*-DRegulatory_Domain_AFU_800_840_80'):
+        json_flags['domain'] = 12
+    if fnmatch.filter(build_flags, '*-DRegulatory_Domain_AFU_840_860_40'):
+        json_flags['domain'] = 13
+    if fnmatch.filter(build_flags, '*-DRegulatory_Domain_AFU_940_980_80'):
+        json_flags['domain'] = 14
+    if fnmatch.filter(build_flags, '*-DRegulatory_Domain_AFU_980_1020_80'):
+        json_flags['domain'] = 15
+
+    if fnmatch.filter(build_flags, '*-DRegulatory_Domain_AFU_975_980_10'):
+        json_flags['domain'] = 16
+    if fnmatch.filter(build_flags, '*-DRegulatory_Domain_AFU_975_976_3'):
+        json_flags['domain'] = 17
+    if fnmatch.filter(build_flags, '*-DRegulatory_Domain_AFU_976_977_3'):
+        json_flags['domain'] = 18
+    if fnmatch.filter(build_flags, '*-DRegulatory_Domain_AFU_977_978_3'):
+        json_flags['domain'] = 19
+    if fnmatch.filter(build_flags, '*-DRegulatory_Domain_AFU_978_979_3'):
+        json_flags['domain'] = 20
+    if fnmatch.filter(build_flags, '*-DRegulatory_Domain_AFU_979_978_3'):
+        json_flags['domain'] = 21
+    if fnmatch.filter(build_flags, '*-DRegulatory_Domain_AFU_995_1000_10'):
+        json_flags['domain'] = 22
 else:
     json_flags['domain'] = 0
 
