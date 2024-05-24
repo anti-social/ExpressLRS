@@ -268,6 +268,8 @@ extern bool pwmSerialDefined;
 #undef Regulatory_Domain_AFU_480_500_40
 
 #elif defined(RADIO_SX127X)
+// Тут просто відбувається перевірка що одна з частот вибрана при компіляції по-замовчуванню
+// В цілому сюди не обов'язково додавати нашу частоту
 #if !(defined(Regulatory_Domain_AU_915) || defined(Regulatory_Domain_FCC_915) || \
         defined(Regulatory_Domain_EU_868) || defined(Regulatory_Domain_IN_866) || \
         defined(Regulatory_Domain_AU_433) || defined(Regulatory_Domain_EU_433) || \
@@ -288,6 +290,7 @@ extern bool pwmSerialDefined;
         defined(Regulatory_Domain_AFU_978_979_3) || \
         defined(Regulatory_Domain_AFU_979_980_3) || \
         defined(Regulatory_Domain_AFU_995_1000_10) || \
+        defined(Regulatory_Domain_AFU_1000_1005_10) || \
         defined(UNIT_TEST))
 #error "Regulatory_Domain is not defined for 900MHz device. Check user_defines.txt!"
 #endif

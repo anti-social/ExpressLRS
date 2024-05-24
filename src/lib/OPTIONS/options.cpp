@@ -85,6 +85,11 @@ __attribute__ ((used)) static firmware_options_t flashedOptions = {
     #elif defined(Regulatory_Domain_AFU_995_1000_10)
     .domain = 22,
 
+    // В цілому сюди не обов'язково додавати нашу частоту
+    #elif defined(Regulatory_Domain_AFU_1000_1005_10)
+    // Порядковий номер нашої частоти
+    .domain = 23,
+
     #else
     #error No regulatory domain defined, please define one in user_defines.txt
     #endif

@@ -33,6 +33,13 @@ const fhss_config_t domains[] = {
     {"AFU_978_979_10", FREQ_HZ_TO_REG_VAL(978000000), FREQ_HZ_TO_REG_VAL(979000000), 3},
     {"AFU_979_980_10", FREQ_HZ_TO_REG_VAL(979000000), FREQ_HZ_TO_REG_VAL(980000000), 3},
     {"AFU_995_1000_10", FREQ_HZ_TO_REG_VAL(995000000), FREQ_HZ_TO_REG_VAL(1000000000), 10},
+
+    // Порядковий номер починаючи з нуля - 23
+    // Назва "AFU_995_1000_10" ні на що не впливає
+    // Далі йдуть 3 параметри:
+    // - початкова і кінцева частоти смуги в герцах
+    // - кількість каналів в смузі по яких буде "стрибати" ELRS
+    {"AFU_995_1000_10", FREQ_HZ_TO_REG_VAL(995000000), FREQ_HZ_TO_REG_VAL(1000000000), 10},
 };
 #elif defined(RADIO_SX128X)
 #include "SX1280Driver.h"

@@ -207,6 +207,11 @@ if '-DRADIO_SX127X=1' in build_flags:
         json_flags['domain'] = 21
     if fnmatch.filter(build_flags, '*-DRegulatory_Domain_AFU_995_1000_10'):
         json_flags['domain'] = 22
+
+    # Також не обов'язково щось додавати сюди
+    if fnmatch.filter(build_flags, '*-DRegulatory_Domain_AFU_1000_1005_10'):
+        # Номер нашої частоти в списку починаючи з нуля
+        json_flags['domain'] = 23
 else:
     json_flags['domain'] = 0
 
