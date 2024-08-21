@@ -275,16 +275,28 @@ extern bool pwmSerialDefined;
 #undef Regulatory_Domain_EU_433
 #undef Regulatory_Domain_US_433
 #undef Regulatory_Domain_US_433_WIDE
-#undef Regulatory_Domain_AFU_723_5_746_9_40
-#undef Regulatory_Domain_AFU_950_5_973_9_40
+#undef Regulatory_Domain_AFU_723_52_747_05_40
+#undef Regulatory_Domain_AFU_900_1000_100
+#undef Regulatory_Domain_AFU_720_760_80
+#undef Regulatory_Domain_AFU_760_800_80
+#undef Regulatory_Domain_AFU_800_840_80
+#undef Regulatory_Domain_AFU_840_860_40
+#undef Regulatory_Domain_AFU_940_980_80
+#undef Regulatory_Domain_AFU_980_1020_80
 
 #elif defined(RADIO_SX127X) || defined(RADIO_LR1121)
 #if !(defined(Regulatory_Domain_AU_915) || defined(Regulatory_Domain_FCC_915) || \
         defined(Regulatory_Domain_EU_868) || defined(Regulatory_Domain_IN_866) || \
         defined(Regulatory_Domain_AU_433) || defined(Regulatory_Domain_EU_433) || \
         defined(Regulatory_Domain_US_433) || defined(Regulatory_Domain_US_433_WIDE) || \
-        defined(Regulatory_Domain_AFU_723_5_746_9_40) || \
-        defined(Regulatory_Domain_AFU_950_5_973_9_40) || \
+        defined(Regulatory_Domain_AFU_723_52_747_05_40) || \
+        defined(Regulatory_Domain_AFU_900_1000_100) || \
+        defined(Regulatory_Domain_AFU_720_760_80) || \
+        defined(Regulatory_Domain_AFU_760_800_80) || \
+        defined(Regulatory_Domain_AFU_800_840_80) || \
+        defined(Regulatory_Domain_AFU_840_860_40) || \
+        defined(Regulatory_Domain_AFU_940_980_80) || \
+        defined(Regulatory_Domain_AFU_980_1020_80) || \
         defined(UNIT_TEST))
 #error "Regulatory_Domain is not defined for 900MHz device. Check user_defines.txt!"
 #endif
