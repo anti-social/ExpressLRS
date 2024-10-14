@@ -1,8 +1,19 @@
 #include "rxtx_devLua.h"
 #include "POWERMGNT.h"
 
-#define MATCH_TX_OPT "MatchTX "
-char strPowerLevels[] = "10mW;25mW;50mW;100mW;250mW;500mW;1000mW;2000mW;AUX9;AUX10;AUX11;AUX12";
+static const char *powerStrings[] = {
+    "10mW",
+    "25mW",
+    "50mW",
+    "100mW",
+    "250mW",
+    "500mW",
+    "1000mW",
+    "2000mW",
+};
+static const char *powerManagementAuxes = "AUX9;AUX10;AUX11;AUX12";
+static const char *matchTxOpt = "MatchTX";
+char strPowerLevels[100];
 const char STR_EMPTYSPACE[] = { 0 };
 const char STR_LUA_PACKETRATES[] =
 #if defined(RADIO_SX127X)
@@ -18,51 +29,27 @@ const char STR_LUA_PACKETRATES[] =
     #error Invalid radio configuration!
 #endif
 
-void luadevGeneratePowerOpts(luaItem_selection *luaPower)
+void luadevGeneratePowerOpts()
 {
-  // This function modifies the strPowerLevels in place and must not
-  // be called more than once!
   char *out = strPowerLevels;
-  PowerLevels_e pwr = PWR_10mW;
-  // Count the semicolons to move `out` to point to the MINth item
-  while (pwr < POWERMGNT::getMinPower())
+  PowerLevels_e pwr = POWERMGNT::getMinPower();
+  while (pwr <= POWERMGNT::getMaxPower())
   {
-    while (*out++ != ';') ;
-    pwr = (PowerLevels_e)((unsigned int)pwr + 1);
-  }
-  // There is no min field, compensate by shifting the index when sending/receiving
-  // luaPower->min = (uint8_t)MinPower;
-  luaPower->options = (const char *)out;
+    const char *powerStr = powerStrings[pwr];
+    strcpy(out, powerStr);
+    out += strlen(powerStr);
+    strcpy(out, ";");
+    out += 1;
 
-
-  // Find where max supported power level is ended and then skip to auxes
-  char *powerLevelsEnd = NULL;
-  while (pwr <= PWR_2000mW)
-  {
-    // If out still points to a semicolon from the last loop move past it
-    if (*out)
-      ++out;
-    while (*out && *out != ';')
-      ++out;
-    if (pwr == POWERMGNT::getMaxPower())
-    {
-      powerLevelsEnd = out;
-    }
     pwr = (PowerLevels_e)((unsigned int)pwr + 1);
   }
 
 #if defined(TARGET_RX)
-  // The RX has the dynamic option added on to the end
-  // the space on the end is to make it display "MatchTX mW"
-  // but only if it has more than one power level
   if (POWERMGNT::getMinPower() != POWERMGNT::getMaxPower())
-    memmove(powerLevelsEnd, MATCH_TX_OPT, strlen(MATCH_TX_OPT) + 1);
-  else
-    *powerLevelsEnd = '\0';
-#else
-  if (powerLevelsEnd != NULL && powerLevelsEnd != out)
   {
-    memmove(powerLevelsEnd, out, strlen(out) + 1);
+    strcpy(out, matchTxOpt);
   }
+#else
+  strcpy(out, powerManagementAuxes);
 #endif
 }

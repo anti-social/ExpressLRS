@@ -444,7 +444,7 @@ static void registerLuaParameters()
   }
 
 #if defined(POWER_OUTPUT_VALUES)
-  luadevGeneratePowerOpts(&luaTlmPower);
+  luadevGeneratePowerOpts();
   registerLUAParameter(&luaTlmPower, &luaparamSetPower);
 #endif
 

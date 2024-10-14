@@ -7,7 +7,7 @@
 #include "POWERMGNT.h"
 
 // Common functions
-void luadevGeneratePowerOpts(luaItem_selection *luaPower);
+void luadevGeneratePowerOpts();
 
 // Common Lua storage (mutable)
 extern char strPowerLevels[];

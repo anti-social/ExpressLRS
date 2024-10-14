@@ -649,7 +649,7 @@ static void registerLuaParameters()
 
     // POWER folder
     registerLUAParameter(&luaPowerFolder);
-    luadevGeneratePowerOpts(&luaPower);
+    luadevGeneratePowerOpts();
     registerLUAParameter(&luaPower, [](struct luaPropertiesCommon *item, uint8_t arg) {
       auto maxPowerLevelArg = POWERMGNT::getMaxPower() - POWERMGNT::getMinPower();
       if (arg <= maxPowerLevelArg)
@@ -805,7 +805,12 @@ static int event()
   }
   luadevUpdateModelID();
   setLuaTextSelectionValue(&luaModelMatch, (uint8_t)config.GetModelMatch());
-  setLuaTextSelectionValue(&luaPower, config.GetPower() - MinPower);
+  auto curPower = config.GetPower();
+  auto powerValue = curPower - POWERMGNT::getMinPower();
+  if (curPower > POWERMGNT::getMaxPower()) {
+      powerValue -= PWR_COUNT - POWERMGNT::getMaxPower() - 1;
+  }
+  setLuaTextSelectionValue(&luaPower, powerValue);
   if (GPIO_PIN_FAN_EN != UNDEF_PIN || GPIO_PIN_FAN_PWM != UNDEF_PIN)
   {
     setLuaTextSelectionValue(&luaFanThreshold, config.GetPowerFanThreshold());
