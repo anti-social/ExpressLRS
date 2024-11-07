@@ -12,6 +12,7 @@
 # Uncomment the line below to use a hardcoded binding phrase
 # Leave commented to use traditional binding
 #-DMY_BINDING_PHRASE="default ExpressLRS binding phrase"
+-DMY_BINDING_PHRASE="Kordon_25"
 
 
 ### REGULATORY DOMAIN: ###
@@ -27,6 +28,7 @@
 #-DRegulatory_Domain_FCC_915
 #-DRegulatory_Domain_ISM_2400
 #-DRegulatory_Domain_EU_CE_2400
+-DRegulatory_Domain_AFU_750_779_25_50
 
 ### PERFORMANCE OPTIONS: ###
 
