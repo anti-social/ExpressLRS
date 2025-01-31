@@ -178,17 +178,19 @@ if '-DRADIO_SX127X=1' in build_flags or '-DRADIO_LR1121=1' in build_flags:
     if fnmatch.filter(build_flags, '*-DRegulatory_Domain_AFU_900_1000_100'):
         json_flags['domain'] = 9
     if fnmatch.filter(build_flags, '*-DRegulatory_Domain_AFU_720_760_80'):
-         json_flags['domain'] = 10
-    if fnmatch.filter(build_flags, '*-DRegulatory_Domain_AFU_760_800_80'):
+        json_flags['domain'] = 10
+    if fnmatch.filter(build_flags, '*-DRegulatory_Domain_AFU_740_760_40'):
         json_flags['domain'] = 11
-    if fnmatch.filter(build_flags, '*-DRegulatory_Domain_AFU_800_840_80'):
+    if fnmatch.filter(build_flags, '*-DRegulatory_Domain_AFU_760_800_80'):
         json_flags['domain'] = 12
-    if fnmatch.filter(build_flags, '*-DRegulatory_Domain_AFU_840_860_40'):
+    if fnmatch.filter(build_flags, '*-DRegulatory_Domain_AFU_800_840_80'):
         json_flags['domain'] = 13
-    if fnmatch.filter(build_flags, '*-DRegulatory_Domain_AFU_940_980_80'):
+    if fnmatch.filter(build_flags, '*-DRegulatory_Domain_AFU_840_860_40'):
         json_flags['domain'] = 14
-    if fnmatch.filter(build_flags, '*-DRegulatory_Domain_AFU_980_1020_80'):
+    if fnmatch.filter(build_flags, '*-DRegulatory_Domain_AFU_940_980_80'):
         json_flags['domain'] = 15
+    if fnmatch.filter(build_flags, '*-DRegulatory_Domain_AFU_980_1020_80'):
+        json_flags['domain'] = 16
 else:
     json_flags['domain'] = 0
 

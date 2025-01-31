@@ -278,6 +278,7 @@ extern bool pwmSerialDefined;
 #undef Regulatory_Domain_AFU_723_52_747_05_40
 #undef Regulatory_Domain_AFU_900_1000_100
 #undef Regulatory_Domain_AFU_720_760_80
+#undef Regulatory_Domain_AFU_740_760_40
 #undef Regulatory_Domain_AFU_760_800_80
 #undef Regulatory_Domain_AFU_800_840_80
 #undef Regulatory_Domain_AFU_840_860_40
@@ -292,6 +293,7 @@ extern bool pwmSerialDefined;
         defined(Regulatory_Domain_AFU_723_52_747_05_40) || \
         defined(Regulatory_Domain_AFU_900_1000_100) || \
         defined(Regulatory_Domain_AFU_720_760_80) || \
+        defined(Regulatory_Domain_AFU_740_760_40) || \
         defined(Regulatory_Domain_AFU_760_800_80) || \
         defined(Regulatory_Domain_AFU_800_840_80) || \
         defined(Regulatory_Domain_AFU_840_860_40) || \
